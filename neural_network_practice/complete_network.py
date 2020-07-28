@@ -78,6 +78,7 @@ class NeuralNetwork:
             biases=np.random.normal()
         )
 
+
     def feedforward(self, x):
         # x is a numpy array with 2 elements
         self.h1.feedforward(x)
@@ -92,7 +93,7 @@ class NeuralNetwork:
           Elements in all_y_trues correspond to those in data.
         '''
         learn_rate = 0.1
-        epochs = 1000  # Number of times to loop through the entire dataset
+        epochs = 25000  # Number of times to loop through the entire dataset
         for epoch in range(epochs):
             for x, y_true in zip(data, all_y_trues):
                 # Forward feed each neuron
@@ -126,7 +127,7 @@ class NeuralNetwork:
                 d_h2__d_w4 = x[1] * deriv_h2
                 d_h2__d_b2 = deriv_h2
 
-                # ~~~ Updare weights and biases
+                # ~~~ Update weights and biases
                 learning_multiplier = learn_rate * d_l__dy_pred
 
                 # Neuron h1
@@ -181,3 +182,9 @@ emily = np.array([-7, -3])  # 128 pounds, 63 inches
 frank = np.array([20, 2])  # 155 pounds, 68 inches
 print("Emily: %.3f" % network.feedforward(emily))  # 0.951 - F
 print("Frank: %.3f" % network.feedforward(frank))  # 0.039 - M
+
+
+soomin = np.array([3, -3])  # 155 pounds, 68 inches
+tilo = np.array([15, 6])  # 155 pounds, 68 inches
+print("Soomin: %.3f" % network.feedforward(soomin))  # 0.951 - F
+print("Tilo: %.3f" % network.feedforward(tilo))  # 0.951 - F
